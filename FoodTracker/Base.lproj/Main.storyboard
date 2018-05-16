@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,20 +28,24 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Lxy-F8-wAJ">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="Lxy-F8-wAJ">
                                             <rect key="frame" x="0.0" y="-1" width="90" height="90"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="90" id="VhJ-2x-9h5"/>
+                                                <constraint firstAttribute="width" constant="90" id="Wvt-Yf-M8o"/>
+                                            </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvT-KG-py9">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RvT-KG-py9">
                                             <rect key="frame" x="98" y="11" width="261" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="55a-nV-tIZ" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
+                                        <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="55a-nV-tIZ" customClass="RatingControl" customModule="FoodTracker" customModuleProvider="target">
                                             <rect key="frame" x="98" y="40" width="252" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="7ru-eJ-Ulo"/>
+                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="starCount">
                                                     <integer key="value" value="5"/>
@@ -48,11 +53,23 @@
                                             </userDefinedRuntimeAttributes>
                                         </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Lxy-F8-wAJ" firstAttribute="top" secondItem="wV0-Du-yub" secondAttribute="top" constant="-1" id="4yY-DV-tQl"/>
+                                        <constraint firstItem="RvT-KG-py9" firstAttribute="top" secondItem="wV0-Du-yub" secondAttribute="topMargin" id="8ib-E9-WTa"/>
+                                        <constraint firstItem="55a-nV-tIZ" firstAttribute="leading" secondItem="Lxy-F8-wAJ" secondAttribute="trailing" constant="8" id="Aww-h9-Icc"/>
+                                        <constraint firstItem="RvT-KG-py9" firstAttribute="leading" secondItem="Lxy-F8-wAJ" secondAttribute="trailing" constant="8" id="HAv-Pw-tuj"/>
+                                        <constraint firstItem="55a-nV-tIZ" firstAttribute="top" secondItem="RvT-KG-py9" secondAttribute="bottom" constant="8" id="ITj-8b-4AD"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="55a-nV-tIZ" secondAttribute="trailing" constant="8" id="Z2g-jT-4Mr"/>
+                                        <constraint firstItem="RvT-KG-py9" firstAttribute="trailing" secondItem="wV0-Du-yub" secondAttribute="trailingMargin" id="jZH-SZ-IC5"/>
+                                        <constraint firstAttribute="bottom" secondItem="55a-nV-tIZ" secondAttribute="bottom" constant="5.5" id="pXa-TO-idf"/>
+                                        <constraint firstItem="Lxy-F8-wAJ" firstAttribute="leading" secondItem="wV0-Du-yub" secondAttribute="leading" id="zTm-00-5yd"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="nameLabel" destination="RvT-KG-py9" id="hkg-IP-vQ4"/>
                                     <outlet property="photoImageView" destination="Lxy-F8-wAJ" id="0y3-K3-rPX"/>
                                     <outlet property="ratingControl" destination="55a-nV-tIZ" id="JMv-If-5Yo"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="Vbi-F4-28L"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -188,10 +205,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xh3-B3-RyE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1079.2" y="132.68365817091455"/>
+            <point key="canvasLocation" x="1164" y="593"/>
         </scene>
     </scenes>
     <resources>
         <image name="defaultPhoto" width="540" height="540"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Vbi-F4-28L"/>
+    </inferredMetricsTieBreakers>
 </document>
